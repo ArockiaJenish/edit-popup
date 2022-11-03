@@ -1,0 +1,63 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">S.No</th>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">UserName</th>
+            <th scope="col">Email</th>
+            <th scope="col">Address</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Website</th>
+            <th scope="col">Company</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let emp of response; index as i">
+            <td>{{i+1}}</td>
+            <td>{{emp.id}}</td>
+            <td>{{emp.name}}</td>
+            <td>{{emp.username}}</td>
+            <td>{{emp.email}}</td>
+            <td>{{emp.address.street}}, {{emp.address.suite}}, {{emp.address.city}}, {{emp.address.zipcode}}, lat:
+                {{emp.address.geo.lat}}, lng: {{emp.address.geo.lng}}</td>
+            <td>{{emp.phone}}</td>
+            <td>{{emp.website}}</td>
+            <td>Name: {{emp.company.name}}<br>
+                CatchPhrase: {{emp.company.catchPhrase}}<br>
+                BS:{{emp.company.bs}}</td>
+            <td>
+                <!-- Button trigger modal -->
+                <button type="button" (click)="edit(emp)" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Edit
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- Modal -->
+<ng-template #content let-model>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Single View</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Id:</strong> {{singEmp.id}}</p>
+                    <p><strong>Name:</strong> {{singEmp.name}}</p>
+                    <p><strong>UserName:</strong> {{singEmp.username}}</p>
+                    <p><strong>Email:</strong> {{singEmp.email}}</p>
+                    <p><strong>Phone:</strong> {{singEmp.phone}}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
